@@ -7,17 +7,38 @@
 void *mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset)
 {
 	/* TODO: Implement mmap(). */
-	return MAP_FAILED;
+	long ret = syscall(9, addr, length, prot, flags, fd, offset);
+
+	if (ret < 0) {
+		errno = -ret;
+		return (void *)-1;
+	}
+
+	return (void *)ret;
 }
 
 void *mremap(void *old_address, size_t old_size, size_t new_size, int flags)
 {
 	/* TODO: Implement mremap(). */
-	return MAP_FAILED;
+	long ret = syscall(25, old_address, old_size, new_size, flags);
+
+	if (ret < 0) {
+		errno = -ret;
+		return (void *)-1;
+	}
+
+	return (void *)ret;
 }
 
 int munmap(void *addr, size_t length)
 {
 	/* TODO: Implement munmap(). */
-	return -1;
+	long ret = syscall(11, addr, length);
+
+	if (ret < 0) {
+		errno = -ret;
+		return (int)-1;
+	}
+
+	return ret;
 }
