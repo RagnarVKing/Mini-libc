@@ -32,13 +32,13 @@ void *calloc(size_t nmemb, size_t size)
 	/* TODO: Implement calloc(). */
     size_t total_size = nmemb * size;
 
-    if(nmemb != 0 && size != total_size / nmemb) {
+    if (nmemb != 0 && size != total_size / nmemb) {
         return NULL;
     }
 
     void *block = malloc(total_size);
 
-    if(!block) {
+    if (!block) {
         return NULL;
     }
 

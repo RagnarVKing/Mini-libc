@@ -9,10 +9,10 @@ int puts(const char *s) {
     if (write(1, s, len) != (ssize_t)len) {
         return -1;
     }
-    
+
     if (write(1, "\n", 1) != 1) {
         return -1;
     }
-    
+
     return 1;
 }
